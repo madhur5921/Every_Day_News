@@ -13,7 +13,7 @@ export default class NewsC extends Component {
 
   async componentDidMount() {
     let api_url =
-      "https://newsapi.org/v2/top-headlines?country=in&apiKey=b53455737613477ab1d298fdd24e05ba&page=1&pagesize=10";
+      `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=b53455737613477ab1d298fdd24e05ba&page=1&pagesize=${this.props.pagesize}`;
 
     let data = await fetch(api_url);
     let parsed_data = await data.json();
@@ -24,7 +24,7 @@ export default class NewsC extends Component {
    previous_page = async () =>{
 
     let api_url =
-      `https://newsapi.org/v2/top-headlines?country=in&apiKey=b53455737613477ab1d298fdd24e05ba&page=${this.state.page - 1}&pagesize=10`;
+      `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=b53455737613477ab1d298fdd24e05ba&page=${this.state.page - 1}&pagesize=${this.props.pagesize}`;
 
     let data = await fetch(api_url);
     let parsed_data = await data.json();
@@ -37,10 +37,10 @@ export default class NewsC extends Component {
 
    next_page = async () =>{
 
-    if(this.state.page + 1 <= Math.ceil(this.state.totalResults / 10)){
+    if(this.state.page + 1 <= Math.ceil(this.state.totalResults / this.props.pagesize)){
 
       let api_url =
-      `https://newsapi.org/v2/top-headlines?country=in&apiKey=b53455737613477ab1d298fdd24e05ba&page=${this.state.page + 1}&pagesize=10`;
+      `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=b53455737613477ab1d298fdd24e05ba&page=${this.state.page + 1}&pagesize=${this.props.pagesize}`;
 
     let data = await fetch(api_url);
     let parsed_data = await data.json();
@@ -57,12 +57,12 @@ export default class NewsC extends Component {
     return (
       <div className="container my-3">
         <h1 style = {{marginTop : "90px"}}>
-          <center>Headlines</center>
+          <center>{this.props.category} Headlines</center>
         </h1>
 
         <div className="container d-flex justify-content-between">
         <button disabled={this.state.page <= 1} type="button" className="btn btn-dark" onClick={this.previous_page}>Previous Page</button>
-        <button disabled={this.state.page >= Math.ceil(this.state.totalResults / 10)} type="button" className="btn btn-dark" onClick={this.next_page}>Next Page</button>
+        <button disabled={this.state.page >= Math.ceil(this.state.totalResults / this.props.pagesize)} type="button" className="btn btn-dark" onClick={this.next_page}>Next Page</button>
   
         </div>
 
@@ -77,6 +77,8 @@ export default class NewsC extends Component {
                   }
                   imageurl={element.urlToImage}
                   newsurl={element.url}
+                  author={element.author}
+                  publish={element.publishedAt}
                 />
               </div>
             );
