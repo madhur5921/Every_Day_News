@@ -63,6 +63,12 @@ export default class Navbar extends Component {
                   </li>
                 </ul>
               </div>
+
+              {/* <div className={`form-check form-switch text-${this.props.mode === 'light'? 'dark' : 'light'}`}>
+  <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onClick = {this.props.dark_light_mode}/>
+  <label className="form-check-label" htmlFor="flexSwitchCheckDefault">{this.props.mode === 'light'? 'Dark Mode' : 'Light Mode'}</label>
+</div> */}
+
             </div>
           </nav>
         </div>

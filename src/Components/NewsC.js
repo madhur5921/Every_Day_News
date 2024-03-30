@@ -12,7 +12,7 @@ export default class NewsC extends Component {
   }
 
   async componentDidMount() {
-    let api_url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=b53455737613477ab1d298fdd24e05ba&page=1&pagesize=${this.props.pagesize}`;
+    let api_url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.api_key}&page=1&pagesize=${this.props.pagesize}`;
 
     let data = await fetch(api_url);
     let parsed_data = await data.json();
@@ -27,7 +27,7 @@ export default class NewsC extends Component {
       this.props.country
     }&category=${
       this.props.category
-    }&apiKey=b53455737613477ab1d298fdd24e05ba&page=${
+    }&apiKey=${this.props.api_key}&page=${
       this.state.page - 1
     }&pagesize=${this.props.pagesize}`;
 
@@ -48,7 +48,7 @@ export default class NewsC extends Component {
         this.props.country
       }&category=${
         this.props.category
-      }&apiKey=b53455737613477ab1d298fdd24e05ba&page=${
+      }&apiKey=${this.props.api_key}&page=${
         this.state.page + 1
       }&pagesize=${this.props.pagesize}`;
 
@@ -65,8 +65,8 @@ export default class NewsC extends Component {
   render() {
     return (
       <div className="container my-3">
-        <h1 style={{ marginTop: "90px" }}>
-          <center>{this.props.category} Headlines</center>
+        <h1 style={{ marginTop: "90px", textAlign: "center" }}>
+          {this.props.category} Headlines
         </h1>
 
         <div className="container d-flex justify-content-between">

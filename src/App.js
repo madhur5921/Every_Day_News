@@ -4,6 +4,9 @@ import NewsC from "./Components/NewsC";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 export default class App extends Component {
+
+  api_key = process.env.REACT_APP_NEWS_API
+
   render() {
     return (
       <div>
@@ -15,8 +18,9 @@ export default class App extends Component {
               path="/"
               element={
                 <NewsC
+                  api_key={this.api_key}
                   key="General"
-                  pagesize="10"
+                  pagesize="20"
                   country="in"
                   category="General"
                 />
@@ -27,8 +31,9 @@ export default class App extends Component {
               path="/Business"
               element={
                 <NewsC
+                api_key={this.api_key}
                   key="Business"
-                  pagesize="10"
+                  pagesize="20"
                   country="in"
                   category="Business"
                 />
@@ -39,8 +44,9 @@ export default class App extends Component {
               path="/Entertainment"
               element={
                 <NewsC
+                api_key={this.api_key}
                   key="Entertainment"
-                  pagesize="10"
+                  pagesize="20"
                   country="in"
                   category="Entertainment"
                 />
@@ -51,8 +57,9 @@ export default class App extends Component {
               path="/Health"
               element={
                 <NewsC
+                api_key={this.api_key}
                   key="Health"
-                  pagesize="10"
+                  pagesize="20"
                   country="in"
                   category="Health"
                 />
@@ -63,8 +70,9 @@ export default class App extends Component {
               path="/Science"
               element={
                 <NewsC
+                api_key={this.api_key}
                   key="Science"
-                  pagesize="10"
+                  pagesize="20"
                   country="in"
                   category="Science"
                 />
@@ -75,8 +83,9 @@ export default class App extends Component {
               path="/Sports"
               element={
                 <NewsC
+                api_key={this.api_key}
                   key="Sports"
-                  pagesize="10"
+                  pagesize="20"
                   country="in"
                   category="Sports"
                 />
@@ -87,8 +96,9 @@ export default class App extends Component {
               path="/Technology"
               element={
                 <NewsC
+                api_key={this.api_key}
                   key="Technology"
-                  pagesize="10"
+                  pagesize="20"
                   country="in"
                   category="Technology"
                 />
